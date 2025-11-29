@@ -3,7 +3,9 @@ sys.setrecursionlimit(1000000)
 def countN(i, n):
     if (i > n):
         return
+    
     print(i)
+
     countN(i+1,n)
     
 
