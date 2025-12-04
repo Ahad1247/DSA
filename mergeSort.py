@@ -36,7 +36,7 @@ def mergeSort(arr,low,high):
     mergeSort(arr,mid+1,high)
     merge(arr, low, mid, high)
 
-array = [1,3,5,2,4,8,1,4,6,7,9,3,2,1,5,1,5,8,10,120,120,131,1]
+array = [1,3,5,2,4,8,1,4]
 print("before:",array)
 mergeSort(array,0,len(array)-1)
 print("after:",array)
