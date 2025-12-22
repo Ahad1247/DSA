@@ -14,3 +14,4 @@ def bubbleSort(arr):
 ary = [4,3,1,7,2,1,1,67,49,12,81]
 bubbleSort(ary)
 print(ary)
+

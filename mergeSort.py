@@ -20,9 +20,11 @@ def merge(arr,low,mid,high):
         right+= 1
 
     i = low
-    while (i <= high):
-        arr[i] = temp[i-low]
+    j = 0
+    while (i <= high and j < len(temp)):
+        arr[i] = temp[j]
         i+= 1
+        j+= 1
 
 def mergeSort(arr,low,high):
     #base case
