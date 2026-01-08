@@ -1,15 +1,15 @@
-class Heap:
-    def __init__(self):
-        self.arr = []
-        self.size = 0
-    
+class Heap: 
+    # Insert element into the heap
     def insert(self,value): 
+        # Rebuild heap to ensure valid heap state before inserting
+        self.buildHeap()
+        
         index = self.size
         self.arr.append(value)
         self.size += 1
 
         while(index > 0):
-            parent = int((index-1)/2)
+            parent = (index-1)//2
             if (self.arr[parent]<self.arr[index]):
                 self.arr[parent],self.arr[index] = self.arr[index],self.arr[parent]
                 index = parent
@@ -17,7 +17,7 @@ class Heap:
                 return
 
     
-
+    # Heapify the subtree rooted at target index
     def heapify(self,target, heapSize):
         largest = target
         left = 2 * target +1
@@ -33,6 +33,7 @@ class Heap:
             self.heapify(largest, heapSize)
 
 
+    # Extract the maximum element from the heap
     def extract(self):
         if (self.size == 0):
             return
@@ -42,6 +43,8 @@ class Heap:
 
         self.heapify(0,self.size)
 
+
+    # Perform heap sort on the array
     def heapSort(self):
         n = self.size
 
@@ -49,37 +52,46 @@ class Heap:
             self.arr[0],self.arr[n-1] = self.arr[n-1],self.arr[0]
             n -= 1
             self.heapify(0, n)
+    
+
+    # Build the heap from the current array
+    # range(start, stop, step)
+    def buildHeap(self):
+        for i in range((self.size -1)//2, -1, -1):
+            self.heapify(i, self.size)
+        
+
+    # Build the heap from the current array
+    def __init__(self, items=[], ):
+        self.arr = items
+        self.size = len(self.arr)
+        if len(self.arr) > 0:
+            self.buildHeap()
 
 
-
-
+    # Print the current state of the heap
     def printHeap(self):
-        i = 0
         printArr = []
-        while (i < self.size):
+        for i in range(self.size):
             printArr.append(self.arr[i])
-            i +=1
         print(printArr)
-
-
-
-h = Heap()
+       
 
 array = [50,70,40,10,20, 100]
-for i in array:
-    h.insert(i)
-
-h.heapSort()
-
-# for j in range(len(array)):
-#     h.extract()
-
-# print("after extraction")
-# h.extract()
-# print("size:", h.size)
-
-# h.printHeap()
-
-print(h.arr)
+h = Heap(array)
+print("initial heap")
 h.printHeap()
 
+h.heapSort()
+print("after Heap Sort")
+h.printHeap()
+
+h.insert(80)
+print("after inserting 80")
+h.printHeap()
+
+h.extract()
+print("after extracting max")
+h.printHeap()
+
+print("Heap Size: ", h.size)
