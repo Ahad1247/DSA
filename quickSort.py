@@ -1,7 +1,10 @@
 def pivot(arr,low,high):
+    # initial pivot
     pivot = arr[low]
     i = low
     j = high
+
+    # check until i and j cross each other
     while (i<j):
         # Skip smaller value than pivot to find the larger value
         while(arr[i] <= pivot and i <= high-1):
@@ -11,7 +14,7 @@ def pivot(arr,low,high):
         while(arr[j] > pivot and j >= low+1):
             j-=1
         
-        # if i and j doesnt cross each other, then swap arr[i] and arr[j]
+        # if i and j doesn't cross each other, then swap arr[i] and arr[j]
         if(i<j):
             arr[i],arr[j]=arr[j],arr[i]
     

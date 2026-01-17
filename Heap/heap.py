@@ -18,18 +18,18 @@ class Heap:
 
     
     # Heapify the subtree rooted at target index
-    def heapify(self,target, heapSize):
-        largest = target
-        left = 2 * target +1
-        right= 2 * target +2
+    def heapify(self,targetIndex, heapSize):
+        largest = targetIndex
+        left = 2 * targetIndex +1
+        right= 2 * targetIndex +2
 
         if (left< heapSize and self.arr[left]>self.arr[largest]):
             largest = left
         if (right< heapSize and self.arr[right]>self.arr[largest]):
             largest = right
 
-        if (largest != target):
-            self.arr[target],self.arr[largest] = self.arr[largest],self.arr[target]
+        if (largest != targetIndex):
+            self.arr[targetIndex],self.arr[largest] = self.arr[largest],self.arr[targetIndex]
             self.heapify(largest, heapSize)
 
 
@@ -62,7 +62,7 @@ class Heap:
         
 
     # Build the heap from the current array
-    def __init__(self, items=[], ):
+    def __init__(self, items=[] ):
         self.arr = items
         self.size = len(self.arr)
         if len(self.arr) > 0:
@@ -79,6 +79,8 @@ class Heap:
 
 array = [50,70,40,10,20, 100]
 h = Heap(array)
+
+
 print("initial heap")
 h.printHeap()
 

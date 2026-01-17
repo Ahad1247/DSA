@@ -31,7 +31,7 @@ def mergeSort(arr,low,high):
     if (low==high):
         return
     
-    mid = int((low+high)/2)
+    mid = (low+high)//2
     #left side
     mergeSort(arr,low,mid)
     #right side
