@@ -1,3 +1,6 @@
+import time
+st = time.process_time()
+a = list(map(int, input().split()))
 def merge(arr,low,mid,high):
     left = low
     right = mid+1
@@ -38,7 +41,11 @@ def mergeSort(arr,low,high):
     mergeSort(arr,mid+1,high)
     merge(arr, low, mid, high)
 
-array = [1,3,5,2,4,8,1,4]
-print("before:",array)
-mergeSort(array,0,len(array)-1)
-print("after:",array)
+#array = [1,3,5,2,4,8,1,4]
+#print("before:",array)
+mergeSort(a,0,len(a)-1)
+#print("after:",array)
+
+et = time.process_time()
+print(a)
+print("Running time:",et-st)

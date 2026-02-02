@@ -1,3 +1,8 @@
+import time
+
+st = time.process_time()
+array = list(map(int, input().split()))
+
 def insSort(arr):
     n = len(arr)
     for i in range(n):
@@ -6,6 +11,9 @@ def insSort(arr):
             arr[j-1],arr[j]= arr[j],arr[j-1]
             j-=1
     return arr
-array = [4,3,7,1]
+
+
 print(insSort(array))
-    
+et = time.process_time()
+
+print("Running time",et-st)

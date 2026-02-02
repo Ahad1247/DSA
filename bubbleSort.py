@@ -9,6 +9,8 @@ def bubbleSort(arr):
         i-=1
 
 ary = [4,3,1,7,2,1,1,67,49,12,81]
+ary2 = [1,2,1,3,4,5,6,7,7,5,1,2,3,4]
 bubbleSort(ary)
-print(ary)
+bubbleSort(ary2)
+print(ary2)
 

@@ -1,3 +1,9 @@
+import time
+import sys
+sys.setrecursionlimit(100000)
+st = time.process_time()
+a = list(map(int, input().split()))
+
 def pivot(arr,low,high):
     # initial pivot
     pivot = arr[low]
@@ -37,6 +43,8 @@ def quickSort(arr,low,high):
     #right portion
     quickSort(arr,pivotIndex+1,high)
 
-array = [4,7,2,3,9,8,1,5,6]
-quickSort(array,0,len(array)-1)
-print(array)
+
+quickSort(a,0,len(a)-1)
+et = time.process_time()
+print(a)
+print("Running time",et-st)
