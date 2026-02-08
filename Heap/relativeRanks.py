@@ -33,9 +33,17 @@ def findRelativeRanks2(score: List[int]):
     place = 1
     while heap:
         originalIndex = heapq.heappop(heap)[1]
-        print(originalIndex)
+        if place == 1:
+            rank[originalIndex] = "Gold Medal"
+        elif place == 2:
+            rank[originalIndex] = "Silver Medal"
+        elif place == 3:
+            rank[originalIndex] = "Bronze Medal"
+        else:
+            rank[originalIndex] = str(place)
+        place +=1
 
-
+    return rank
 
 score = [10,3,8,9,4]
 # print(findRelativeRanks1([5,4,3,1,2]))
