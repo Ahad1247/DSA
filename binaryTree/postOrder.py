@@ -21,4 +21,13 @@ def build_tree():
 
     return root
 
+def postOrder(root):
+    if root is None:
+        return
+    
+    postOrder(root.left)
+    postOrder(root.right)
+    print(root.data,end=" ")
+
 x = build_tree()
+postOrder(x)

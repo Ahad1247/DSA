@@ -21,4 +21,12 @@ def build_tree():
 
     return root
 
+def preOrder(root):
+    if root is None:
+        return
+    print(root.data,end=" ")
+    preOrder(root.left)
+    preOrder(root.right)
+
 x = build_tree()
+preOrder(x)

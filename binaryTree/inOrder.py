@@ -21,4 +21,13 @@ def build_tree():
 
     return root
 
+def inOrder(root):
+    if root is None:
+        return
+    
+    inOrder(root.left)
+    print(root.data,end=" ")
+    inOrder(root.right)
+
 x = build_tree()
+inOrder(x)
