@@ -39,6 +39,52 @@ class BST:
                     break
 
         return root
+
+    def deleteNode(self,root,key):
+        if root is None:
+            return None
+        if root.data == key:
+            return self.helper(root)
+        
+        dummy = root
+
+        while root is not None:
+            if key < root.data:
+                if root.left is not None and root.left.data == key:
+                    root.left = self.helper(root.left)
+                    break
+                else:
+                    root = root.left
+            else:
+                if root.right is not None and root.right.data == key:
+                    root.right = self.helper(root.right)
+                    break
+                else:
+                    root = root.right
+        return dummy
+    
+    def helper(self,root):
+        #case 1 no left child, return right child
+        if root.left is None:
+            return root.right
+        #case 2 no right child, return left child
+        elif root.right is None:
+            return root.left
+        #case 3 node has both children
+        #Store the right child
+        rightChild = root.right
+        #find the rightmost node in the left subtree
+        lastRight = self.findLastRight(root.left)
+        #attach the right child to the rightmost node of left subtree
+        lastRight.right = rightChild
+
+        return root.left
+    
+    def findLastRight(self,root):
+        if root.right is None:
+            return root
+        return self.findLastRight(root.right)
+    
     
     def search(self, root, key):
         if root is None:
@@ -47,11 +93,10 @@ class BST:
             return True
 
         if key < root.data:
-            right = self.search(root.left, key)
-            return right
+            
+            return self.search(root.left, key)
         else:
-            left = self.search(root.right, key)
-            return left
+            return self.search(root.right, key)
 
 
 
@@ -70,10 +115,16 @@ for i in range(n):
 print("All values inserted successfully!")
 
 
-# SEARCH
-key = int(input("Enter value to search: "))
+deleteValue = int(input("Enter a value to delete: "))
+root = BST().deleteNode(root, deleteValue)
 
-if BST().search(root, key) == True:
-    print(f"{key} found in BST.")
-else:
-    print(f"{key} not found in BST.")
+
+# SEARCH
+numberOfSearches = int(input("How many values do you want to search: "))
+for i in range(numberOfSearches):
+    value = int(input(f"Enter value to search {i+1}: "))
+    found = BST().search(root, value)
+    if found:
+        print(f"{value} found in the BST.")
+    else:
+        print(f"{value} not found in the BST.")
