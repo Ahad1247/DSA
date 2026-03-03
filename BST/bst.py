@@ -17,7 +17,33 @@ class BST:
         while root.left != None:
             root = root.left
         return root
-        
+
+    def inOrderSuccessor(self, root, val):
+        successor = None
+        while root is not None:
+            if root.data > val:
+                successor = root.data
+                root = root.left
+            else:
+                root = root.right
+        return successor
+
+    def inOrderPredecessor(self, root, val):
+        predecessor = None
+        while root is not None:
+            if root.data < val:
+                predecessor = root
+                root = root.right
+            else:
+                root = root.left
+            return predecessor
+    
+    def inOrderTraversal(self, root):
+        if root is not None:
+            self.inOrderTraversal(root.left)
+            print(root.data, end=' ')
+            self.inOrderTraversal(root.right)
+
     def insertIntoBST(self, root, data):
         if not root:
             return Node(data)
@@ -51,13 +77,15 @@ class BST:
         while root is not None:
             if key < root.data:
                 if root.left is not None and root.left.data == key:
-                    root.left = self.helper(root.left)
+                    helperReturnedValue = self.helper(root.left)
+                    root.left = helperReturnedValue
                     break
                 else:
                     root = root.left
             else:
                 if root.right is not None and root.right.data == key:
-                    root.right = self.helper(root.right)
+                    helperReturnedValue = self.helper(root.right)
+                    root.right = helperReturnedValue
                     break
                 else:
                     root = root.right
@@ -104,7 +132,8 @@ class BST:
 
 
 # -------- MAIN --------
-root = BST().root
+bst = BST()
+root = bst.root
 
 n = int(input("How many values do you want to insert? "))
 
@@ -115,16 +144,18 @@ for i in range(n):
 print("All values inserted successfully!")
 
 
-deleteValue = int(input("Enter a value to delete: "))
-root = BST().deleteNode(root, deleteValue)
+# deleteValue = int(input("Enter a value to delete: "))
+# root = BST().deleteNode(root, deleteValue)
 
 
-# SEARCH
-numberOfSearches = int(input("How many values do you want to search: "))
-for i in range(numberOfSearches):
-    value = int(input(f"Enter value to search {i+1}: "))
-    found = BST().search(root, value)
-    if found:
-        print(f"{value} found in the BST.")
-    else:
-        print(f"{value} not found in the BST.")
+# # SEARCH
+# numberOfSearches = int(input("How many values do you want to search: "))
+# for i in range(numberOfSearches):
+#     value = int(input(f"Enter value to search {i+1}: "))
+#     found = BST().search(root, value)
+#     if found:
+#         print(f"{value} found in the BST.")
+#     else:
+#         print(f"{value} not found in the BST.")
+
+bst.inOrderTraversal(root)
