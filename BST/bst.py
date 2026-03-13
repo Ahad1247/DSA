@@ -69,8 +69,10 @@ class BST:
     def deleteNode(self,root,key):
         if root is None:
             return None
+        
         if root.data == key:
-            return self.helper(root)
+            newRoot = self.helper(root)
+            return newRoot
         
         dummy = root
 
