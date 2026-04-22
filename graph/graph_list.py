@@ -5,6 +5,5 @@ for _ in range(m):
     u , v = map(int, input().split())
     graph[u].append(v)
     graph[v].append(u)
-
 for vertex in graph:
     print(vertex, ":", graph[vertex])

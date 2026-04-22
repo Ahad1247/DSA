@@ -7,16 +7,16 @@ def bfs(adj):
     q = deque()
     q.append(0)
     
-    bfs = []
+    ans = []
     
     while q:
         node = q.popleft()
-        bfs.append(node)
+        ans.append(node)
         
         for i in adj[node]:
             if not vis[i]:
                 vis[i] = 1
                 q.append(i)
     
-    return bfs
+    return ans
     
