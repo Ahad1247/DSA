@@ -14,6 +14,9 @@ class DisjointSet:
         ulp_u = self.find_ult_parent(u)
         ulp_v = self.find_ult_parent(v)
 
+        if(ulp_u == ulp_v):
+            return False
+
         if self.rank[ulp_u] < self.rank[ulp_v]:
             self.parent[ulp_u] = ulp_v
         elif self.rank[ulp_v] < self.rank[ulp_u]:
@@ -21,21 +24,37 @@ class DisjointSet:
         else:
             self.parent[ulp_v] = ulp_u
             self.rank[ulp_u] += 1
+        return True
+    
+    def union_by_size(self, u ,v):
+        ulp_u = self.find_ult_parent(u)
+        ulp_v = self.find_ult_parent(v)
+
+        if (ulp_u == ulp_v):
+            return False
+        
+        if (self.size[ulp_u] < self.size[ulp_v]):
+            self.parent[ulp_u] = ulp_v
+            self.size[ulp_v] += self.size[ulp_u]
+        else:
+            self.parent[ulp_v] = ulp_u
+            self.size[ulp_u] += self.size[ulp_v]
+        return
 
 ds = DisjointSet(7)
 
-ds.union_by_rank(1, 2)
-ds.union_by_rank(2, 3)
-ds.union_by_rank(4, 5)
-ds.union_by_rank(6, 7)
-ds.union_by_rank(5, 6)
+ds.union_by_size(1, 2)
+ds.union_by_size(2, 3)
+ds.union_by_size(4, 5)
+ds.union_by_size(6, 7)
+ds.union_by_size(5, 6)
 
 if ds.find_ult_parent(3) == ds.find_ult_parent(7):
     print("Same")
 else:
     print("Not same")
 
-ds.union_by_rank(3, 7)
+ds.union_by_size(3, 7)
 
 if ds.find_ult_parent(3) == ds.find_ult_parent(7):
     print("Same")
