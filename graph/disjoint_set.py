@@ -39,7 +39,7 @@ class DisjointSet:
         else:
             self.parent[ulp_v] = ulp_u
             self.size[ulp_u] += self.size[ulp_v]
-        return
+        return True
 
 ds = DisjointSet(7)
 
