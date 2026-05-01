@@ -33,10 +33,14 @@ class Solution:
         
         ds = DisjointSet(V)
         mst_w = 0
-        
-        for u,v,w in edges:
-            if ds.union_by_size(u,v):
+        mst_e  = []
+
+        for u, v, w in edges:           
+            if ds.union_by_size(u, v):
                 mst_w += w
-        
+                mst_e.append((u, v, w))
+                if len(mst_e) == V - 1:
+                    break
+
         return mst_w
                 
