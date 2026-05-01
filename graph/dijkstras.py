@@ -1,3 +1,4 @@
+import heapq
 class Solution:
     def dijkstra(self, V, edges, src):
         # Build adjacency dictionary
